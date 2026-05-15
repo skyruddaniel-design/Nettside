@@ -84,7 +84,7 @@ a { color: inherit; text-decoration: none; }
 .eyebrow { color: var(--accent); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 14px; text-transform: uppercase; font-weight: 500;}
 h1, h2, h3, p { margin-top: 0;}
 h1 { font-size: clamp(3.05rem, 8vw, 7.5rem); letter-spacing: 0; line-height: 0.94; margin-bottom: 24px; max-width: 980px; color: var(--accent);}
-h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: 0; line-height: 1; margin-bottom: 0; color: var(--accent-strong)}
+h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: 0; line-height: 1; margin-bottom: 0; color: var(--accent-strong); line-height: 1.2;}
 h3 { font-size: 1.18rem; line-height: 1.2; color: var(--accent);}
 .hero-copy { color: rgba(245, 241, 232, 0.84); font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 660px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
