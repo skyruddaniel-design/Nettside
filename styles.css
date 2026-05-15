@@ -2,7 +2,7 @@
 :root {
   color-scheme: dark;
   --bg: #ffffff;
-  --panel: #000000;
+  --panel: #31243d;
   --text: #f5f1e8;
   --muted: #868686;
   --line: rgba(245, 241, 232, 0.18);
@@ -81,7 +81,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 1;
 }
 .hero-content { max-width: 780px; position: relative; z-index: 2; }
-.eyebrow { color: var(--accent); font-size: 1rem; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 14px; text-transform: uppercase; font-weight: 400;}
+.eyebrow { color: var(--accent); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.12em; margin: 0 0 14px; text-transform: uppercase; font-weight: 500;}
 h1, h2, h3, p { margin-top: 0;}
 h1 { font-size: clamp(3.05rem, 8vw, 7.5rem); letter-spacing: 0; line-height: 0.94; margin-bottom: 24px; max-width: 980px; color: var(--accent);}
 h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: 0; line-height: 1; margin-bottom: 0; color: var(--accent-strong)}
@@ -119,25 +119,25 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: var(--accent);}
 .work-card div { bottom: 0; padding: 28px; position: absolute; z-index: 1; }
 .work-card p { color: var(--accent); font-size: 0.86rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; }
 .service-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.service-grid article, .timeline div, .contact-form, .work-card{ background: var(--panel); border: 1px solid var(--line); border-radius: 8px; transition:
+.service-grid article, .timeline div, .contact-form, .work-card{ border: 2px solid var(--muted); border-radius: 8px; transition:
 
     transform 0.35s ease,
 
     box-shadow 0.35s ease;
 
   box-shadow: 0 4px 12px rgba(0,0,0,0.08)}
-.service-grid article { min-height: 260px; padding: 24px; }
-.service-grid span, .timeline span { color: white; display: inline-block; font-weight: 800; margin-bottom: 42px; }
-.service-grid p, .timeline p { color: white; }
+.service-grid article { min-height: 260px; padding: 24px;}
+.service-grid span, .timeline span { color: black; display: inline-block; font-weight: 800; margin-bottom: 42px; }
+.service-grid p, .timeline p { color: black; }
 .timeline { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr))}
 .timeline div:hover, .service-grid article:hover {transform: translateY(-8px);
 
   box-shadow: 0 14px 30px rgba(0,0,0,0.18);}
 .timeline div { padding: 28px;} 
 .contact { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.65fr); }
-.contact-form { display: grid; gap: 18px; padding: 24px; background-color: rgb(0, 0, 0); border: 1px solid var(--line);}
+.contact-form { display: grid; gap: 18px; padding: 24px; border: 1px solid var(--line); border: 2px solid black}
 label { color: rgb(255, 255, 255); display: grid; font-size: 0.92rem; font-weight: 700; gap: 8p;}
-input, textarea { background: #111315; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font: inherit; min-height: 48px; padding: 12px 14px; resize: vertical; font-size: small}
+input, textarea { background: #ffffff; border: 1px solid black; border-radius: 8px; color: var(--text); font: inherit; min-height: 48px; padding: 12px 14px; resize: vertical; font-size: small}
 input:focus, textarea:focus { border-color: var(--accent); outline: none; }
 .contact-form .button { border: 0; cursor: pointer; margin-top: 6px; background-color: rgb(255, 255, 255); color: black;}
 .footer { border-top: 1px solid var(--line); color: var(--muted); display: flex; gap: 20px; justify-content: space-between; padding: 28px clamp(18px, 5vw, 72px); }
