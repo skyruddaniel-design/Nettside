@@ -53,7 +53,7 @@
 
       <section class="intro section">
         <div class="section-heading">
-          <p class="eyebrow">Hva vi gjør</p>
+          <p class="eyebrow" style="">Hva vi gjør</p>
           <h2>Vi bygger innholdspakker som faktisk kan brukes.</h2>
         </div>
         <p>Fra kampanjefilm og produktfoto til reels, intervjuer, annonser. Vi hjelper deg fra ide til ferdig publisering.</p>
@@ -112,12 +112,41 @@
           <br>
           <p style="font-size: 16px;">Send en kort melding om prosjektet ditt, så kommer vi tilbake med forslag til produksjon, tidsplan og pris.</p>
         </div>
-        <form class="contact-form">
-          <label>Navn<input type="text" name="name" placeholder="Ditt navn" /></label>
-          <label>E-post<input type="email" name="email" placeholder="navn@firma.no" /></label>
-          <label>Hva trenger du?<textarea name="message" rows="5" placeholder="Fortell kort om prosjektet"></textarea></label>
-          <button class="button primary" type="submit">Send forespørsel</button>
-        </form>
+        <form
+  class="contact-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+
+  <!-- Din access key -->
+  <input type="hidden" name="access_key" value="fabb8098-fa56-4bf3-8931-f2695a5ad50f">
+
+  <label>
+    Navn
+    <input type="text" name="name" placeholder="Ditt navn" required />
+  </label>
+
+  <label>
+    E-post
+    <input type="email" name="email" placeholder="navn@firma.no" required />
+  </label>
+
+  <label>
+    Hva trenger du?
+    <textarea
+      name="message"
+      rows="5"
+      placeholder="Fortell kort om prosjektet"
+      required
+    ></textarea>
+  </label>
+
+  <button class="button primary" type="submit">
+    Send forespørsel
+  </button>
+
+</form>
+<p id="result"></p>
       </section>
     </main>
 

@@ -19,3 +19,36 @@ nav.querySelectorAll("a").forEach((link) => {
 window.addEventListener("scroll", setHeaderState, { passive: true });
 setHeaderState();
 
+const form = document.querySelector(".contact-form");
+
+const result = document.getElementById("result");
+
+form.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+
+    method: "POST",
+
+    body: formData
+
+  });
+
+  const data = await response.json();
+
+  if (data.success) {
+
+    result.innerHTML = "Meldingen ble sendt!";
+
+    form.reset();
+
+  } else {
+
+    result.innerHTML = "Noe gikk galt.";
+
+  }
+
+});
