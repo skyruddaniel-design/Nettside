@@ -139,14 +139,17 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 .hero-stats span { color: var(--muted); display: block; font-size: 0.94rem; margin-top: 8px; }
 .section { margin: 0 auto; max-width: var(--max); padding: clamp(72px, 10vw, 130px) clamp(18px, 4vw, 34px); }
 .section-heading { display: grid; gap: 16px; grid-template-columns: minmax(220px, 0.4fr) minmax(0, 1fr); margin-bottom: 44px; }
-.process .section-heading {
+#tjenester .section-heading {
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.4fr);
 }
-.process .section-heading h2 {
+#tjenester .section-heading h2 {
   grid-column: 1;
 }
 
-.process .section-heading p {
+#tjenester .section-heading p {
+  grid-column: 2;
+}
+#prosess .section-heading h2 {
   grid-column: 2;
 }
 .intro { align-items: end; display: grid; gap: 40px; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.7fr); }
