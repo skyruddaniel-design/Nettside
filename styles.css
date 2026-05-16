@@ -11,9 +11,8 @@
   --max: 1160px;
 }
 @media (max-width: 768px) {
-    .body {
-        background: none !important; /* Removes the gradient image */
-        background-color: #ffffff;    /* Replaces it with a solid color */
+    body {
+        background: var(--bg) !important; /* Removes the gradient image */
     }
 }
 * { box-sizing: border-box; }
