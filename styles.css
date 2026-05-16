@@ -20,22 +20,9 @@ html { scroll-behavior: smooth }
 body {
   margin: 0;
   background:
-
   linear-gradient(
 
-    to bottom right,
-
-    #6f00ff 0%,
-
-     #6f00ff 20%,
-
-    transparent 20%
-
-  ),
-
-  linear-gradient(
-
-    to top left,
+    150deg,
 
     #6f00ff 0%,
 
@@ -43,6 +30,12 @@ body {
 
     transparent 20%
 
+  ),
+  linear-gradient(
+    -25deg,
+    #6f00ff 0%,
+    #6f00ff 12%,
+    transparent 12%
   ),
   linear-gradient(90deg,rgb(228, 228, 228) 0%, rgba(255, 255, 255) 40%, rgb(237, 237, 237) 100%);
   background-color: var(--bg);
@@ -193,7 +186,7 @@ input, textarea { background: #ffffff; border: 1px solid var(--muted); border-ra
 input:focus, textarea:focus { border-color: var(--accent); outline: none; }
 .contact-form .button { border: 1px solid var(--muted); cursor: pointer; margin-top: 6px; background-color: rgb(255, 255, 255); color: var(--accent-strong);}
 .contact-form .button:hover { transform: scale(1.02); }
-.footer { border-top: 1px solid var(--line); color: var(--muted); display: flex; gap: 20px; justify-content: space-between; padding: 28px clamp(18px, 5vw, 72px); }
+.footer { border-top: 1px solid white; color: var(--muted); display: flex; gap: 20px; justify-content: space-between; padding: 28px clamp(18px, 5vw, 72px); }
 .footer p { margin: 0; color: white;}
 @media (max-width: 920px) {
   .nav-toggle { display: inline-flex; }
@@ -228,10 +221,3 @@ input:focus, textarea:focus { border-color: var(--accent); outline: none; }
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.section:first-child {
-
-  opacity: 1;
-
-  transform: none;
-
-}
