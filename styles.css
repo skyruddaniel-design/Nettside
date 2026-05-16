@@ -216,3 +216,11 @@ input:focus, textarea:focus { border-color: var(--accent); outline: none; }
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.section:first-child {
+
+  opacity: 1;
+
+  transform: none;
+
+}
