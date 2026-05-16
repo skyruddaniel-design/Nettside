@@ -10,7 +10,7 @@
   --accent-strong: #6f00ff;
   --max: 1160px;
 }
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     body {
         background: var(--bg) !important; /* Removes the gradient image */
     }
