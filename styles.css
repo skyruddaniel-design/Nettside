@@ -10,6 +10,12 @@
   --accent-strong: #6f00ff;
   --max: 1160px;
 }
+@media (max-width: 768px) {
+    .body {
+        background: none !important; /* Removes the gradient image */
+        background-color: #ffffff;    /* Replaces it with a solid color */
+    }
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth }
 body {
