@@ -202,3 +202,17 @@ input:focus, textarea:focus { border-color: var(--accent); outline: none; }
   .section { padding-block: 74px; }
   .footer { flex-direction: column; }
 }
+
+.section {
+  min-height: 60vh;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
+  
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
