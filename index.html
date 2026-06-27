@@ -1,155 +1,256 @@
 ﻿<!doctype html>
-<html lang="no">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skyrud Media | Innholdsproduksjon</title>
-    <meta name="description" content="Responsiv portefoljenettside for et kreativt innholdsproduksjonsselskap." />
+    <title>Skyrud Media | Content Production</title>
+    <meta
+      name="description"
+      content="Responsive portfolio website for a creative content production company."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
   </head>
-    <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="Gå til toppen">
-        <span class="brand-mark">SM</span>
-        <span>Skyrud Media</span>
-      </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Åpne meny">
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" data-nav>
-        <a href="#arbeid">Arbeid</a>
-        <a href="#tjenester">Tjenester</a>
-        <a href="#prosess">Prosess</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-    </header>
+  <body>
 
-    <main id="top">
-      <section class="hero" aria-label="Introduksjon">
-        <video class="hero-video" autoplay muted loop playsinline>
-  <source src="assets/Timeline 1.mp4" type="video/mp4" />
-  
-</video>
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="Back to top">
+      <span class="brand-mark">SM</span>
+      <span>Skyrud Media</span>
+    </a>
 
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <h3 class="eyebrow" style="color: white;">Strategi, film, foto og sosiale medier</h3>
-          <h1>Innhold som får merkevaren din sett.</h1>
-          <p class="hero-copy">Vi lager visuelt innhold for klientene våre som fremstår tydelig, relevant og profesjonelt.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#arbeid">Se portefølje</a>
-            <a class="button secondary" href="#kontakt">Book en prat</a>
-          </div>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav" data-nav>
+      <a href="#arbeid">Work</a>
+      <a href="#tjenester">Services</a>
+      <a href="#prosess">Process</a>
+      <a href="#kontakt">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Introduction">
+      <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+        <source src="assets/fiverr 3.0.mp4" type="video/mp4" />
+      </video>
+<button id="soundBtn" aria-label="Toggle sound">
+  <span id="soundIcon"></span>
+</button>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h3 class="eyebrow" style="color: white;">
+          Strategy, Video, Photography & Social Media
+        </h3>
+
+        <h1>Content that gets your brand noticed.</h1>
+
+        <p class="hero-copy">
+          We create visual content that helps brands communicate clearly,
+          professionally, and with impact.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#arbeid">View Portfolio</a>
+          <a class="button secondary" href="#kontakt">Book a Call</a>
         </div>
-      </section>
-<div class="section">
+      </div>
+    </section>
+
+    <div class="section">
+
       <section class="intro section">
         <div class="section-heading">
-          <p class="eyebrow">Hva vi gjør</p>
-          <h2>Vi bygger innholdspakker som faktisk kan brukes.</h2>
+          <p class="eyebrow">What We Do</p>
+          <h2>We create content packages that actually work.</h2>
         </div>
-        <p>Fra kampanjefilm og produktfoto til reels, intervjuer, annonser. Vi hjelper deg fra ide til ferdig publisering.</p>
+
+        <p>
+          From campaign films and product photography to reels, interviews,
+          and paid advertising—we help you from the first idea to the final
+          published content.
+        </p>
       </section>
 
       <section class="work section" id="arbeid">
         <div class="section-heading">
-          <p class="eyebrow">Utvalgt arbeid</p>
+          <p class="eyebrow">Featured Work</p>
         </div>
+
         <div class="work-grid">
+
           <article class="work-card feature">
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80" alt="Kamera og produksjonsutstyr på sett" />
-            <div><p>Kampanjefilm</p><h3>Lanseringsfilm for ny merkevare</h3></div>
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80"
+                 alt="Camera and production equipment on set" />
+
+            <div>
+              <p>Campaign Film</p>
+              <h3>Launch Film for a New Brand</h3>
+            </div>
           </article>
+
           <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80" alt="Profesjonelt kamera i studio" />
-            <div><p>Produktfoto</p><h3>Visuell identitet for nettbutikk</h3></div>
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1000&q=80"
+                 alt="Professional camera in a studio" />
+
+            <div>
+              <p>Product Photography</p>
+              <h3>Visual Identity for an E-commerce Brand</h3>
+            </div>
           </article>
+
           <article class="work-card">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80" alt="Person som filmer med kamera" />
-            <div><p>Sosiale medier</p><h3>30 dager med reels og annonser</h3></div>
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
+                 alt="Person filming with a camera" />
+
+            <div>
+              <p>Social Media</p>
+              <h3>30 Days of Reels & Paid Ads</h3>
+            </div>
           </article>
+
         </div>
       </section>
 
       <section class="services section" id="tjenester">
         <div class="section-heading">
-          <h2>Alt du trenger for et tydelig visuelt uttrykk.</h2>
+          <h2>Everything you need for a strong visual identity.</h2>
         </div>
+
         <div class="service-grid">
-          <article><span>01</span><h3>Video</h3><p>Reklamefilm, intervjuer, reels, eventfilm og kampanjeinnhold.</p></article>
-          <article><span>02</span><h3>Foto</h3><p>Produktfoto, portretter, miljøbilder og bildebanker for merkevaren.</p></article>
-          <article><span>03</span><h3>Strategi</h3><p>Konsept, manus, publiseringsplan og kanaltilpasning.</p></article>
-          <article><span>04</span><h3>Etterarbeid</h3><p>Klipp, farge, lyd, teksting og format.</p></article>
+
+          <article>
+            <span>01</span>
+            <h3>Video</h3>
+            <p>Commercials, interviews, reels, event films, and campaign content.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Photography</h3>
+            <p>Product photography, portraits, lifestyle imagery, and brand image libraries.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Strategy</h3>
+            <p>Creative concepts, scripting, content planning, and platform optimisation.</p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Post Production</h3>
+            <p>Editing, colour grading, sound design, subtitles, and delivery in every format.</p>
+          </article>
+
         </div>
       </section>
 
       <section class="process section" id="prosess">
         <div class="section-heading">
-          <h2>Ryddig produksjon fra første ide til ferdig innhold.</h2>
+          <h2>From concept to delivery—a smooth production process.</h2>
         </div>
+
         <div class="timeline">
-          <div><span>1</span><h3>Avklaring</h3><p>Vi finner målgruppe, budskap, kanaler og produksjonsbehov.</p></div>
-          <div><span>2</span><h3>Produksjon</h3><p>Vi planlegger opptak, location, crew og innholdsliste.</p></div>
-          <div><span>3</span><h3>Leveranse</h3><p>Du får ferdige filer til web, annonser, sosiale medier og presentasjoner.</p></div>
+
+          <div>
+            <span>1</span>
+            <h3>Discovery</h3>
+            <p>We define your audience, message, channels, and production requirements.</p>
+          </div>
+
+          <div>
+            <span>2</span>
+            <h3>Production</h3>
+            <p>We plan the shoot, locations, crew, and content schedule.</p>
+          </div>
+
+          <div>
+            <span>3</span>
+            <h3>Delivery</h3>
+            <p>You receive ready-to-use files for websites, social media, advertising, and presentations.</p>
+          </div>
+
         </div>
       </section>
 
       <section class="contact section" id="kontakt">
+
         <div>
-          <p class="eyebrow">Kontakt oss</p>
-          <h2>Klar for å lage noe som ser skikkelig bra ut?</h2>
+          <p class="eyebrow">Contact Us</p>
+
+          <h2>Ready to create content that stands out?</h2>
+
           <br>
-          <p style="font-size: 16px;">Send en kort melding om prosjektet ditt, så kommer vi tilbake med forslag til produksjon, tidsplan og pris.</p>
+
+          <p style="font-size:16px;">
+            Send us a short message about your project, and we'll get back to
+            you with ideas, a production plan, timeline, and pricing.
+          </p>
         </div>
+
         <form
-  class="contact-form"
-  action="https://api.web3forms.com/submit"
-  method="POST"
->
+          class="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
 
-  <!-- Din access key -->
-  <input type="hidden" name="access_key" value="fabb8098-fa56-4bf3-8931-f2695a5ad50f" >
+          <input
+            type="hidden"
+            name="access_key"
+            value="fabb8098-fa56-4bf3-8931-f2695a5ad50f"
+          >
 
-  <label>
-    Navn
-    <input type="text" name="name" required />
-  </label>
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
 
-  <label>
-  <img src="https://s2.svgbox.net/hero-outline.svg?ic=mail&color=000" width="20" height="20">
-    <input type="email" name="email" required />
-    
-  </label>
+          <label>
+            <img src="https://s2.svgbox.net/hero-outline.svg?ic=mail&color=000"
+                 width="20"
+                 height="20">
 
-  <label>
-    Hva trenger du?
-    <textarea
-      name="message"
-      rows="5"
-      required
-    ></textarea>
-  </label>
+            <input type="email" name="email" required />
+          </label>
 
-  <button class="button primary" type="submit">
-    Send forespørsel
-  </button>
+          <label>
+            What do you need?
+            <textarea
+              name="message"
+              rows="5"
+              required
+            ></textarea>
+          </label>
 
-</form>
-<p id="result"></p>
+          <button class="button primary" type="submit">
+            Send Inquiry
+          </button>
+
+        </form>
+
+        <p id="result"></p>
+
       </section>
-    </main>
 
-    <footer class="footer">
-      <p style="color: black;">Skyrud Media</p>
-      <p>daniel.skyrud@hotmail.com · +47 995 04 331</p>
-    </footer>
-  </div>
-    <script src="script.js"></script>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p style="color: black;">Skyrud Media</p>
+    <p>daniel.skyrud@hotmail.com · +47 995 04 331</p>
+  </footer>
+
+  <script src="script.js"></script>
   </body>
 </html>
