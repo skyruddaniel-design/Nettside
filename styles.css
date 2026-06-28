@@ -156,7 +156,7 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
   color: white;
   transform: opacity 0.6s ease;
 }
-.button.secondary { border: 1px solid rgba(245, 241, 232, 0.46); color: ; transition: 0.4s; background: var(--accent);}
+.button.secondary { border: 1px solid rgba(245, 241, 232, 0.46); transition: 0.4s; background: var(--accent);}
 .button.secondary:hover {
   background: white;
   color: var(--accent-strong);
@@ -212,7 +212,17 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 }
 .intro { align-items: end; display: grid; gap: 40px; grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.6fr); }
 .intro > p, .contact p { color: var(--muted); font-size: 1.12rem; }
-.service-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.service-grid {
+    display: grid;
+    /* Setter 4 kolonner, med en max-bredde per kort */
+    grid-template-columns: repeat(4, minmax(200px, 300px));
+    gap: 24px;
+    padding-top: 10rem;
+    justify-content: center; /* Dette sentrerer gridet horisontalt */
+    max-width: 1200px; /* Begrens totalbredden så kortene ikke blir for brede */
+    margin: 0 auto;    /* Sentrerer selve containeren på siden */
+    position: relative;
+}
 .service-grid article, .timeline div, .work-card, .contact-form .button { border: 1px solid #c0c0c0; border-radius: 8px; transition:
 
     transform 0.35s ease }
@@ -239,6 +249,19 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 /* Valgfritt: Gjør teksten litt tydeligere ved hover */
 /* Fjern hover-effekten fra .timeline span */
 /* Legg den heller på div-elementene inne i .timeline */
+.service-grid img {
+
+  position: absolute;
+
+  left: -20rem;
+
+  top: 0;
+
+  width: 300px; /* juster etter behov */
+
+  height: auto;
+
+}
 
 .timeline div {
     background: var(--bg);
@@ -270,7 +293,14 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 .service-grid span, .timeline span { color: black; display: inline-block; font-weight: 800; margin-bottom: 42px; }
 .service-grid p, .timeline p { color: black; }
 .service-grid h3 {color: var(--accent-strong);}
-.timeline { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr))}
+.timeline { display: grid;
+    /* Setter 4 kolonner, med en max-bredde per kort */
+    grid-template-columns: repeat(4, minmax(200px, 300px));
+    gap: 24px;
+    justify-content: center; /* Dette sentrerer gridet horisontalt */
+    max-width: 1200px; /* Begrens totalbredden så kortene ikke blir for brede */
+    margin: 0 auto;    /* Sentrerer selve containeren på siden */
+    position: relative;}
 .timeline div { padding: 28px;} 
 .timeline h3 {color: var(--accent-strong)}
 .contact { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.65fr); }
@@ -299,6 +329,9 @@ input:focus, textarea:focus { border-color: var(--accent); outline: none; }
   .work-card, .work-card.feature { min-height: 420px; }
   .section { padding-block: 74px; }
   .footer { flex-direction: column; }
+  .timeline img {
+    display: none;
+  }
 }
 
 .section {
