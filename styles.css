@@ -144,7 +144,7 @@ a { color: inherit; text-decoration: none; }
 }
 .eyebrow { color: white; font-size: 1.2rem; letter-spacing: 0.2rem; margin: 0 0 14px; font-family: Arial, Helvetica, sans-serif}
 h1, h2, h3, p { margin-top: 0;}
-h1 { font-size: clamp(3.05rem, 8vw, 7.5rem); letter-spacing: 0; line-height: 0.94; margin-bottom: 24px; max-width: 980px; color: var(--accent);}
+h1 { font-size: clamp(3.05rem, 8vw, 4rem); letter-spacing: 0; line-height: 0.94; margin-bottom: 24px; max-width: 980px; color: var(--accent);}
 h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: 0; line-height: 1; margin-bottom: 0; color: black; line-height: 1.2; font-weight: 300;}
 h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 .hero-copy { color: rgba(245, 241, 232, 0.84); font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 660px; }
@@ -156,7 +156,7 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
   color: white;
   transform: opacity 0.6s ease;
 }
-.button.secondary { border: 1px solid rgba(245, 241, 232, 0.46); color: white; transition: 0.4s; background: var(--accent);}
+.button.secondary { border: 1px solid rgba(245, 241, 232, 0.46); color: ; transition: 0.4s; background: var(--accent);}
 .button.secondary:hover {
   background: white;
   color: var(--accent-strong);
@@ -186,6 +186,23 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 #tjenester .section-heading h2 {
   grid-column: 1;
 }
+.services h2 {
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 750px;
+}
+.services .section-heading {
+    display: block;
+    max-width: 500px;
+}
+.section-heading {
+    margin-bottom: 60px;
+}
+
+.section-heading h2 {
+    margin-bottom: 0;
+}
 
 #tjenester .section-heading p {
   grid-column: 2;
@@ -195,25 +212,65 @@ h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
 }
 .intro { align-items: end; display: grid; gap: 40px; grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.6fr); }
 .intro > p, .contact p { color: var(--muted); font-size: 1.12rem; }
-.work-grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.work-card { background: var(--panel--); border: 1px solid var(--line); border-radius: 8px; min-height: 420px; overflow: hidden; position: relative; }
-.work-card:hover {transform: scale(1.02);}
-.work-card.feature { grid-row: span 2; min-height: 860px; }
-.work-card img { height: 100%; object-fit: cover; position: absolute; width: 100%; }
-.work-card::after { background: linear-gradient(0deg, rgba(16, 17, 19, 0.88), rgba(16, 17, 19, 0.08)); content: ""; inset: 0; position: absolute; }
-.work-card div { bottom: 0; padding: 28px; position: absolute; z-index: 1; }
-.work-card p{ color: white; font-size: 0.86rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; }
-.work-card h3 {color: var(--accent);}
 .service-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .service-grid article, .timeline div, .work-card, .contact-form .button { border: 1px solid #c0c0c0; border-radius: 8px; transition:
 
     transform 0.35s ease }
 .service-grid article { min-height: 260px; padding: 24px;}
+/* Grunninnstillinger for kortene */
+.service-grid article {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Myk animasjon */
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover-effekt: Kortet løfter seg og får en kraftigere skygge */
+.service-grid article:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    z-index: 10; /* Sørger for at kortet legger seg "oppå" andre elementer */
+}
+
+/* Valgfritt: Gjør teksten litt tydeligere ved hover */
+/* Fjern hover-effekten fra .timeline span */
+/* Legg den heller på div-elementene inne i .timeline */
+
+.timeline div {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover-effekt på selve boksen */
+.timeline div:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* Hover-effekt på teksten når man holder over boksen */
+.timeline div:hover h3 {
+    color: var(--accent);
+}
+
+/* Valgfritt: Gjør teksten litt tydeligere ved hover */
+.service-grid article:hover h3 {
+    color: var(--accent);
+}
 .service-grid span, .timeline span { color: black; display: inline-block; font-weight: 800; margin-bottom: 42px; }
 .service-grid p, .timeline p { color: black; }
 .service-grid h3 {color: var(--accent-strong);}
 .timeline { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr))}
-.timeline div:hover, .service-grid article:hover {transform: translateY(-8px); }
 .timeline div { padding: 28px;} 
 .timeline h3 {color: var(--accent-strong)}
 .contact { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.65fr); }
@@ -285,4 +342,88 @@ input:focus, textarea:focus { border-color: var(--accent); outline: none; }
 
 #soundBtn:hover {
   background: rgba(0, 0, 0, 0.7);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.frame {
+    padding: 12px;
+    background-color: #ffffff; /* Eller bruk en hvit/lys farge */
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+/* Containeren for innholdet */
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Bruker grid for kontrollert asymmetri */
+.about-row {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr; /* Tekst får litt mer vekt enn bildet */
+    gap: 80px; 
+    align-items: center;
+}
+
+/* Bildets ramme (moderne stil) */
+.frame {
+    padding: 4px;
+    background-color: #000000; /* Kontrast til bakgrunn */
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    position: relative;
+    /* Fjerner de gamle "pinnen" elementene for et renere uttrykk */
+}
+
+.about-image {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Typografi */
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.about-text p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+/* Responsivitet for mobil/nettbrett */
+@media (max-width: 900px) {
+    .about-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    .about-image {
+        height: 350px;
+    }
+}
+
+
+@media(max-width:768px){
+    .about-row{
+        display: none;
+    }
+
+    .about-image{
+        display: none;
+    }
 }
