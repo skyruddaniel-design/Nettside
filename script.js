@@ -101,3 +101,18 @@ btn.addEventListener("click", async () => {
 
 // initial state
 renderIcon();
+
+// Karusell-scrolling (Blaer hele visningen videre)
+const track = document.getElementById('carouselTrack');
+const leftBtn = document.getElementById('slideLeft');
+const rightBtn = document.getElementById('slideRight');
+
+if (track && leftBtn && rightBtn) {
+  leftBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+  });
+
+  rightBtn.addEventListener('click', () => {
+    track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+  });
+}
