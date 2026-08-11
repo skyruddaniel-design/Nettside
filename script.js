@@ -67,40 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   sections.forEach((section) => observer.observe(section));
 });
-const video = document.getElementById("heroVideo");
-const btn = document.getElementById("soundBtn");
-const icon = document.getElementById("soundIcon");
-
-let muted = true;
-
-function renderIcon() {
-  icon.innerHTML = muted
-    ? `
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M11 5L6 9H2v6h4l5 4V5z" fill="white"/>
-        <path d="M16 9l5 6M21 9l-5 6" stroke="white" stroke-width="2"/>
-      </svg>
-    `
-    : `
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M11 5L6 9H2v6h4l5 4V5z" fill="white"/>
-        <path d="M15 9a4 4 0 010 6" stroke="white" stroke-width="2"/>
-        <path d="M17 7a7 7 0 010 10" stroke="white" stroke-width="2"/>
-      </svg>
-    `;
-}
-
-btn.addEventListener("click", async () => {
-  muted = !muted;
-  video.muted = muted;
-
-  if (!muted) await video.play();
-
-  renderIcon();
-});
-
-// initial state
-renderIcon();
 
 // Karusell-scrolling (Blaer hele visningen videre)
 const track = document.getElementById('carouselTrack');
