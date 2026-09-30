@@ -1,505 +1,1567 @@
-﻿:root {
+﻿/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
   color-scheme: dark;
-  --bg: #faf9f7;
-  --panel: #31243d;
+
+  --bg: #08080a;
+  --surface: #14141a;
+  --surface-light: #1b1b24;
+
   --text: #f5f1e8;
-  --muted: #868686;
-  --line: rgba(0, 0, 0, 0.08);
+  --text-soft: #b9b4c4;
+  --muted: #86818f;
+
+  --line: #2c2c34;
+
   --accent: #ff8922;
   --accent-strong: #6f00ff;
-  --max: 1160px;
+
+  --max-width: 1160px;
+
+  --header-height: 76px;
+
+  --proj-w: 140px;
+  --proj-top: 0px;
+  --lens-y: 100px;
 }
 
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
+
   background:
-  linear-gradient(
-    150deg,
-    #6f00ff 0%,
-    #6f00ff 20%,
-    transparent 20%
-  ),
-  linear-gradient(
-    -25deg,
-    #6f00ff 0%,
-    #6f00ff 12%,
-    transparent 12%
-  ),
-  linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255) 80%, rgb(255, 255, 255) 100%);
+    radial-gradient(
+      ellipse at 50% 25%,
+      #22222a 0%,
+      #08080a 80%
+    ) fixed;
+
   background-color: var(--bg);
+
   color: var(--text);
-  font-family: 'Poppins', sans-serif;
+
+  font-family: "Poppins", sans-serif;
+
   line-height: 1.5;
+
+  overflow-x: clip;
 }
 
-img, video { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1 {
+  max-width: 980px;
+
+  margin-bottom: 24px;
+
+  color: var(--accent);
+
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  margin-bottom: 24px;
+
+  color: var(--text);
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+h3 {
+  line-height: 1.2;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+
+  color: var(--text);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  letter-spacing: 0.2rem;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .site-header {
-  align-items: center;
-  background: rgba(16, 17, 19, 0.56);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid transparent;
-  display: flex;
-  justify-content: space-between;
-  left: 0;
-  padding: 18px clamp(18px, 4vw, 54px);
   position: fixed;
-  right: 0;
+
   top: 0;
-  z-index: 10;
-}
-.site-header.is-scrolled { border-bottom-color: rgba(255, 255, 255, 0.1); }
-.brand { align-items: center; display: inline-flex; font-weight: 800; gap: 12px; letter-spacing: 0; }
-.brand-mark {
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  display: flex;
   align-items: center;
-  background: var(--text);
-  border-radius: 8px;
-  color: var(--bg);
+  justify-content: space-between;
+
+  min-height: var(--header-height);
+
+  padding: 18px clamp(18px, 4vw, 54px);
+
+  background: rgba(16, 17, 19, 0.56);
+
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+
+  background: rgba(16, 17, 19, 0.78);
+}
+
+.brand {
   display: inline-flex;
-  font-size: 0.82rem;
-  height: 38px;
-  justify-content: center;
-  width: 38px;
-}
-.main-nav { align-items: center; display: flex; gap: clamp(18px, 3vw, 36px); font-size: 0.95rem; font-weight: 600; }
-.main-nav a { color: rgba(245, 241, 232, 0.82); }
-.main-nav a:hover { color: var(--text); }
-.nav-toggle {
   align-items: center;
-  background: transparent;
+
+  gap: 12px;
+
+  font-weight: 700;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 8px;
+
+  background: var(--text);
+  color: var(--bg);
+
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+
+  gap: clamp(18px, 3vw, 36px);
+
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.main-nav a {
+  color: rgba(245, 241, 232, 0.78);
+
+  transition:
+    color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--text);
+}
+
+.nav-toggle {
+  position: relative;
+
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  color: var(--text);
-  display: none;
-  height: 42px;
-  justify-content: center;
-  padding: 0;
-  width: 42px;
-}
-.nav-toggle span { background: currentColor; display: block; height: 2px; position: absolute; width: 18px; }
-.nav-toggle span:first-child { transform: translateY(-5px); }
-.nav-toggle span:last-child { transform: translateY(5px); }
 
-/* HERO */
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  position: absolute;
+
+  left: 50%;
+
+  width: 18px;
+  height: 2px;
+
+  background: currentColor;
+
+  transform: translateX(-50%);
+
+  transition:
+    transform 0.25s ease;
+}
+
+.nav-toggle span:first-child {
+  transform:
+    translateX(-50%)
+    translateY(-5px);
+}
+
+.nav-toggle span:last-child {
+  transform:
+    translateX(-50%)
+    translateY(5px);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+.section {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  padding:
+    clamp(70px, 9vw, 120px)
+    clamp(18px, 4vw, 34px);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 8%;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    130px
+    clamp(18px, 8vw, 120px)
+    80px;
 }
 
 .hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 80px;
-    width: 100%;
-    max-width: 2200px;
-    margin: auto;
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(360px, 0.9fr);
+
+  align-items: center;
+
+  gap: clamp(50px, 7vw, 100px);
+
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
 }
 
 .hero-text {
-    flex: 1;
-    max-width: 600px;
+  max-width: 680px;
+}
+
+.hero-copy {
+  max-width: 650px;
+
+  margin-bottom: 0;
+
+  color: rgba(245, 241, 232, 0.82);
+
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
 }
 
 .hero-image-wrapper {
-    flex: 1;
-    position: relative;
+  position: relative;
 }
 
 .hero-image-wrapper img {
-    width: 100%;
-    border-radius: 20px;
-    border: white solid 6px;
-    display: block;
-    object-fit: cover;
-    box-shadow: 0 20px 90px rgba(0,0,0,.5);
+  width: 100%;
+
+  border: 5px solid white;
+  border-radius: 20px;
+
+  object-fit: cover;
+
+  box-shadow:
+    0 20px 90px rgba(0, 0, 0, 0.5);
 }
 
-.eyebrow { color: white; font-size: 1.2rem; letter-spacing: 0.2rem; margin: 0 0 14px; font-family: Arial, Helvetica, sans-serif;}
-h1, h2, h3, p { margin-top: 0;}
-h1 { font-size: clamp(3.05rem, 8vw, 4rem); letter-spacing: 0; line-height: 0.94; margin-bottom: 24px; max-width: 980px; color: var(--accent);}
-h2 { font-size: clamp(2rem, 3vw, 3rem); letter-spacing: 0; margin-bottom: 0; color: black; line-height: 1.2; font-weight: 300;}
-h3 { font-size: 1.18rem; line-height: 1.2; color: white;}
-.hero-copy { color: rgba(245, 241, 232, 0.84); font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 660px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px;}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
 
-.button { align-items: center; border-radius: 8px; display: inline-flex; font-weight: 800; justify-content: center; min-height: 48px; padding: 0 20px; }
-.button.primary { background: white; color: var(--accent); font-size: 1rem; transition: 0.3s ease; border: 1px solid rgba(245, 241, 232, 0.46)}
+  gap: 12px;
+
+  margin-top: 34px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.button {
+  min-height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 20px;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: white;
+  color: var(--accent);
+
+  border: 1px solid rgba(245, 241, 232, 0.46);
+}
+
 .button.primary:hover {
   background: var(--accent-strong);
   color: white;
+  border-color: var(--accent-strong);
 }
-.button.secondary { border: 1px solid rgba(245, 241, 232, 0.46); transition: 0.3s ease; background: var(--accent);}
+
+.button.secondary {
+  background: var(--accent);
+  color: white;
+
+  border: 1px solid rgba(245, 241, 232, 0.46);
+}
+
 .button.secondary:hover {
   background: white;
   color: var(--accent-strong);
 }
 
-.section { margin: 0 auto; max-width: var(--max); padding: clamp(60px, 8vw, 110px) clamp(18px, 4vw, 34px); }
 
-/* OM MEG SEKSJON */
-.frame {
-    padding: 12px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-    position: relative;
-}
+/* =========================================================
+   OM MEG
+   ========================================================= */
 
 .about-row {
-    display: grid;
-    grid-template-columns: 1fr 0.8fr;
-    gap: 80px; 
-    align-items: center;
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 0.8fr);
+
+  align-items: center;
+
+  gap: clamp(40px, 7vw, 80px);
+}
+
+.frame {
+  position: relative;
+
+  padding: 30px 14px;
+
+  background: #111;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.frame::before,
+.frame::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  height: 30px;
+
+  z-index: 2;
+
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='30'%3E%3Crect x='8' y='7' width='16' height='16' rx='3.5' fill='%23ffffff'/%3E%3C/svg%3E")
+    repeat-x
+    center;
+}
+
+.frame::before {
+  top: 0;
+}
+
+.frame::after {
+  bottom: 0;
 }
 
 .about-image {
-    width: 100%;
-    height: 480px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
+  width: 100%;
+  height: 480px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
 }
 
 .about-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    line-height: 1.1;
+  margin-bottom: 22px;
 }
 
-.about-text p {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 30px;
+.about-text p:not(.eyebrow) {
+  margin-bottom: 20px;
+
+  color: var(--text-soft);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
-/* UTVALGT KORTFILM */
-.film-container {
-    margin-top: 2rem; 
-    position: relative;
+
+/* =========================================================
+   UTVALGT FILM
+   ========================================================= */
+
+.featured-film {
+  padding-top: 100px;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.cinema {
+  position: relative;
+
+  padding:
+    55px
+    clamp(30px, 10vw, 130px)
+    100px;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      #5b0d1f,
+      #3a0712
+    )
+    top / 100% 34px no-repeat,
+
+    radial-gradient(
+      ellipse 70% 80% at 50% 40%,
+      rgba(255,255,255,0.16) 0%,
+      rgba(255,255,255,0.05) 45%,
+      transparent 75%
+    );
+}
+
+.cinema::before,
+.cinema::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 11%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #4a0a18 0,
+      #8c1c34 12px,
+      #4a0a18 24px
+    );
+}
+
+.cinema::before {
+  left: 0;
+
+  box-shadow:
+    inset -22px 0 30px rgba(0,0,0,0.6);
+}
+
+.cinema::after {
+  right: 0;
+
+  box-shadow:
+    inset 22px 0 30px rgba(0,0,0,0.6);
 }
 
 .film-preview-link {
-    display: block; 
-    position: relative; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    text-decoration: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  position: relative;
+
+  display: block;
+
+  overflow: hidden;
+
+  border: 5px solid #000;
+  border-radius: 4px;
+
+  box-shadow:
+    0 0 0 2px #2c2c2c,
+    0 0 60px rgba(255,255,255,0.3),
+    0 40px 90px rgba(255,255,255,0.1);
 }
 
 .film-preview-link img {
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    object-fit: cover; 
-    aspect-ratio: 16/9; 
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.6s ease;
+}
+
+.film-preview-link:hover img {
+  transform: scale(1.025);
 }
 
 .play-overlay {
-    position: absolute; 
-    inset: 0; 
-    background: rgba(0,0,0,0.3); 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    color: white; 
-    transition: background 0.3s ease;
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.28);
+
+  color: white;
+
+  transition:
+    background 0.3s ease;
 }
 
-.play-overlay:hover {
-    background: rgba(0,0,0,0.45);
+.film-preview-link:hover .play-overlay {
+  background: rgba(0,0,0,0.42);
 }
 
 .play-btn {
-    width: 70px; 
-    height: 70px; 
-    background: rgba(255,255,255,0.95); 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.95);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.3);
 }
 
 .play-text {
-    margin-top: 1rem; 
-    font-weight: 600; 
-    font-size: 1.1rem; 
-    letter-spacing: 0.5px;
+  margin-top: 16px;
+
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .film-details {
-    margin-top: 1.5rem; 
-    text-align: left;
-    color: var(--muted);
+  margin-top: 24px;
 }
 
 .film-details h3 {
-    font-size: 1.5rem; 
-    margin-bottom: 0.5rem; 
-    color: black; 
-    font-weight: 400;
+  margin-bottom: 8px;
+
+  color: var(--text);
+
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .film-details p {
-    max-width: 700px;
+  max-width: 720px;
+
+  margin-bottom: 0;
+
+  color: var(--text-soft);
 }
 
-/* PROSESS SEKSJON (OPPDATERT MEGET ELEGANTE OG RENE KORT) */
+
+/* =========================================================
+   PROSESS
+   ========================================================= */
+
 .process-header {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
-.timeline { 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    max-width: 100%;
-    margin: 0 auto;
+.timeline {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
 }
 
 .process-card {
-    background: #ffffff;
-    border: 1px solid #e8e8e8;
-    border-radius: 16px;
-    padding: 36px 28px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-height: 280px;
+
+  padding: 32px 28px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: 16px;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .process-card:hover {
-    border-color: var(--accent-strong);
-    box-shadow: 0 10px 30px rgba(111, 0, 255, 0.08);
+  transform: translateY(-5px);
+
+  border-color: var(--accent-strong);
+
+  box-shadow:
+    0 15px 35px rgba(111,0,255,0.1);
 }
 
 .step-badge {
-    background: var(--bg);
-    color: var(--accent-strong);
-    border: 1px solid rgba(111, 0, 255, 0.2);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 24px;
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 24px;
+
+  border: 1px solid rgba(111,0,255,0.25);
+  border-radius: 50%;
+
+  background: var(--bg);
+  color: var(--accent-strong);
+
+  font-weight: 700;
 }
 
 .process-card h3 {
-    color: #111111;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 12px;
+  margin-bottom: 12px;
+
+  color: var(--text);
+
+  font-size: 1.2rem;
 }
 
 .process-card p {
-    color: #666666;
-    font-size: 0.98rem;
-    line-height: 1.6;
-    margin: 0;
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
-/* KONTAKT */
-.contact { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.65fr); }
-.contact-form { display: grid; gap: 18px; padding: 24px; background: #ffffff; border-radius: 16px; border: 1px solid #e8e8e8;}
-label { color: black; display: grid; font-size: 0.92rem; font-weight: 400; gap: 8px;}
-input, textarea { background: #fafafa; border: 1px solid #dcdcdc; border-radius: 8px; color: black; font: inherit; min-height: 48px; padding: 12px 14px; resize: vertical; font-size: 0.95rem; }
-input:focus, textarea:focus { border-color: var(--accent-strong); outline: none; background: #ffffff; }
-.contact-form .button { border: 1px solid #dcdcdc; cursor: pointer; margin-top: 6px; background-color: #ffffff; color: var(--accent-strong); transition: 0.3s ease;}
-.contact-form .button:hover { background: var(--accent-strong); color: #ffffff; border-color: var(--accent-strong); }
 
-.footer { border-top: 1px solid rgba(0, 0, 0, 0.1); color: var(--muted); display: flex; gap: 20px; justify-content: space-between; padding: 28px clamp(18px, 5vw, 72px); }
-.footer p { margin: 0; color: black;}
-
-/* ØVRIG ARBEID CAROUSEL (Viser 2 om gangen) */
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory; /* Låser visningen perfekt på plass */
-  padding: 12px 4px 24px 4px;
-  scrollbar-width: none; /* Skjuler scrollbar i Firefox */
-  width: 100%;
-}
-
-.carousel-track::-webkit-scrollbar {
-  display: none; /* Skjuler scrollbar i Chrome/Safari */
-}
-
-/* Beregner bredden slik at nøyaktig 2 kort vises om gangen (100% minus 1 gap på 24px deler på 2) */
-.work-card {
-  flex: 0 0 calc((100% - 24px) / 2);
-  scroll-snap-align: start; /* Sørger for at kortene låser seg fint ved scrolling */
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 14px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.work-card:hover {
-  border-color: var(--accent-strong);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-.work-thumbnail {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: #000;
-}
-
-.work-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-}
-
-.work-card:hover .work-thumbnail img {
-  opacity: 0.85;
-}
 
 .play-badge {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.95);
+
+  left: 16px;
+  bottom: 16px;
+
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255,255,255,0.95);
+
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,0.4);
 }
 
-.work-info {
-  padding: 20px 18px;
-}
 
-.work-info h3 {
-  color: #111111;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
+/* =========================================================
+   FILM PERFORERING
+   ========================================================= */
 
-.work-info p {
-  color: #666666;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* Navigasjonsknapper */
-.carousel-btn {
+.film-holes {
   position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  color: #111111;
-  font-size: 1.8rem;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 5;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  pointer-events: none;
+  z-index: 10;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='9' viewBox='0 0 24 9'%3E%3Crect x='5' y='1' width='14' height='7' rx='2' fill='%23f5f1e8'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: 24px 9px;
+  opacity: .9;
 }
 
-.carousel-btn:hover {
-  background: #fafafa;
+.film-holes-top {
+  top: 0;
+}
+
+.film-holes-bottom {
+  bottom: 0;
+}
+
+/* =========================================================
+   KONTAKT
+   ========================================================= */
+
+.contact {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(320px, 0.65fr);
+
+  align-items: start;
+
+  gap: 60px;
+}
+
+.contact-intro h2 {
+  margin-bottom: 26px;
+}
+
+.contact-intro > p:last-child {
+  max-width: 600px;
+
+  color: var(--text-soft);
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.contact-form {
+  display: grid;
+
+  gap: 18px;
+
+  padding: 26px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+label {
+  display: grid;
+
+  gap: 8px;
+
+  color: var(--text);
+
+  font-size: 0.9rem;
+}
+
+input,
+textarea {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 12px 14px;
+
+  resize: vertical;
+
+  background: #0d0d12;
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+
+  color: var(--text);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  background: var(--surface);
+
   border-color: var(--accent-strong);
+}
+
+.contact-form .button {
+  width: 100%;
+
+  margin-top: 6px;
+
+  background: white;
+
+  border: 1px solid var(--line);
+
   color: var(--accent-strong);
 }
 
-.carousel-btn.prev {
-  left: -20px;
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding:
+    28px
+    clamp(18px, 5vw, 72px);
+
+  background: #050507;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--text-soft);
 }
 
-.carousel-btn.next {
-  right: -20px;
+.footer p {
+  margin: 0;
 }
 
-/* Responsivt: På mobil viser vi 1 video om gangen for bedre lesbarhet */
-@media (max-width: 768px) {
-  .work-card {
-    flex: 0 0 100%;
+
+/* =========================================================
+   PROJECTOR
+   ========================================================= */
+
+.projector {
+  position: fixed;
+
+  top: var(--proj-top);
+  left: 50%;
+
+  width: var(--proj-w);
+
+  z-index: 110;
+
+  pointer-events: none;
+
+  transform:
+    translateX(-50%)
+    rotate(var(--projector-angle, 0deg));
+
+  transform-origin: 50% 91%;
+
+  filter:
+    drop-shadow(
+      0 8px 24px
+      rgba(255,255,255,0.12)
+    );
+
+  will-change: transform;
+}
+
+.projector svg {
+  width: 100%;
+  height: auto;
+}
+
+.reel {
+  transform-box: fill-box;
+
+  transform-origin: center;
+
+  animation:
+    reel-spin 5s linear infinite;
+}
+
+.lens-glow {
+  animation:
+    flicker 5s infinite;
+}
+
+@keyframes reel-spin {
+  to {
+    transform: rotate(360deg);
   }
-  .carousel-btn {
-    display: none; /* På mobil sveiper man direkte med fingeren */
+}
+
+
+/* =========================================================
+   LYSSTRÅLE
+   ========================================================= */
+
+.beam,
+.beam-dust {
+  position: fixed;
+
+  top: var(--lens-y);
+  left: 50%;
+
+  width: 130vw;
+  height: 100vh;
+
+  pointer-events: none;
+
+  transform:
+    translateX(-50%)
+    rotate(var(--beam-angle, 0deg));
+
+  transform-origin: 50% 0;
+
+  will-change: transform;
+}
+
+.beam {
+  z-index: 0;
+
+  clip-path:
+    polygon(
+      calc(50% - 9px) 0,
+      calc(50% + 9px) 0,
+      100% 100%,
+      0 100%
+    );
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.45) 0,
+      rgba(255,255,255,0.14) 18%,
+      rgba(255,255,255,0.05) 60%,
+      transparent 95%
+    );
+
+  animation:
+    flicker 5s infinite;
+}
+
+.beam-dust {
+  z-index: 1;
+
+  clip-path:
+    polygon(
+      calc(50% - 9px) 0,
+      calc(50% + 9px) 0,
+      100% 100%,
+      0 100%
+    );
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.8) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.55) 0 1px,
+      transparent 1.5px
+    );
+
+  background-size:
+    80px 110px,
+    120px 170px;
+
+  background-position:
+    0 0,
+    40px 30px;
+
+  opacity: 0.2;
+
+  animation:
+    dust 16s linear infinite;
+}
+
+@keyframes dust {
+  to {
+    background-position:
+      0 -110px,
+      40px -170px;
   }
 }
 
-/* RESPONSIVITET */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.72;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  32% {
+    opacity: 0.92;
+  }
+
+  44% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.68;
+  }
+
+  72% {
+    opacity: 0.98;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 920px) {
-  .nav-toggle { display: inline-flex; }
-  .main-nav { background: rgba(16, 17, 19, 0.96); border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: none; flex-direction: column; left: 0; padding: 18px; position: absolute; right: 0; top: 75px; }
-  .main-nav.is-open { display: flex; }
-  .contact { grid-template-columns: 1fr; }
-  .timeline { grid-template-columns: 1fr; }
+
+  :root {
+    --proj-w: 96px;
+    --proj-top: 58px;
+    --lens-y: 127px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .main-nav {
+    position: absolute;
+
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+
+    display: none;
+    flex-direction: column;
+
+    padding: 18px;
+
+    background: rgba(16,17,19,0.96);
+
+    border-bottom:
+      1px solid rgba(255,255,255,0.1);
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .hero {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text {
+    max-width: 800px;
+  }
+
+  .hero-image-wrapper {
+    max-width: 760px;
+  }
+
+  .about-row {
+    grid-template-columns: 1fr;
+  }
+
+  .about-text {
+    max-width: 760px;
+  }
+
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
 }
 
-@media (max-width: 900px) {
-    .about-row {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 40px;
-    }
-    .about-image {
-        height: 350px;
-    }
-}
 
-@media (max-width: 600px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .hero-text {
-        max-width: 100%;
-    }
-    .hero-video-wrapper {
-        width: 100%;
-    }
-}
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 680px) {
-  .site-header { padding: 14px 16px; }
-  .hero { min-height: 92svh; padding: 120px 18px 26px; }
-  h1 { font-size: clamp(2.5rem, 12vw, 3.8rem); }
-  .section { padding-block: 60px; }
-  .footer { flex-direction: column; }
+
+  :root {
+    --proj-w: 76px;
+    --proj-top: 60px;
+    --lens-y: 115px;
+  }
+
+  .site-header {
+    padding: 14px 16px;
+  }
+
+  .hero {
+    min-height: 100svh;
+
+    padding:
+      120px
+      18px
+      60px;
+
+    text-align: center;
+  }
+
+  .hero-content {
+    gap: 45px;
+  }
+
+  h1 {
+    font-size:
+      clamp(
+        2.6rem,
+        12vw,
+        4rem
+      );
+  }
+
+  .hero-copy {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .hero-image-wrapper img {
+    border-width: 4px;
+    border-radius: 14px;
+  }
+
+  .section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .about-row {
+    gap: 35px;
+  }
+
+  .about-image {
+    height: 350px;
+  }
+
+  .about-text {
+    text-align: left;
+  }
+
+  .cinema {
+    padding:
+      44px
+      7%
+      90px;
+  }
+
+  .film-details h3 {
+    font-size: 1.25rem;
+  }
+
+  .process-card {
+    min-height: auto;
+  }
+
+  .film-strip {
+    width: 100vw;
+
+    margin-left:
+      calc(50% - 50vw);
+
+    padding:
+      32px 0;
+  }
+
+
+  .work-card {
+    flex: 0 0 280px;
+
+    width: 280px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .projector,
+  .beam,
+  .beam-dust,
+  .reel,
+  .lens-glow,
+
+  .film-preview-link img,
+  .work-thumbnail img,
+  .work-card,
+  .process-card,
+  .button {
+    transition: none;
+  }
+
+}
+
+/* =========================================
+   ØVRIG ARBEID / FILMRULL
+========================================= */
+
+/* =========================================================
+   ØVRIG ARBEID – UENDELIG FILMRULL
+   ========================================================= */
+
+.other-work-section {
+  width: 100%;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.other-work-section .section-header {
+  width: min(var(--max-width), calc(100% - 40px));
+  margin: 0 auto 45px;
+}
+
+
+/* FILMSTRIP */
+
+.film-strip {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+
+  padding: 20px 0;
+
+  background: #111114;
+
+  border-top: 1px solid #222229;
+  border-bottom: 1px solid #222229;
+}
+
+
+/* Vinduet */
+
+.carousel-window {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/* Selve raden */
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  will-change: transform;
+}
+
+
+/* Vi trenger ikke en egen visuell gruppe,
+   men denne må ikke begrense bredden */
+
+.carousel-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  gap: 22px;
+  flex-shrink: 0;
+  padding: 22px 22px 22px 0;
+}
+
+.film-holes {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  pointer-events: none;
+  z-index: 10;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='9' viewBox='0 0 24 9'%3E%3Crect x='5' y='1' width='14' height='7' rx='2' fill='%23f5f1e8'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-size: 24px 9px;
+  opacity: .9;
+}
+
+.film-holes-top {
+  top: 0;
+}
+
+.film-holes-bottom {
+  bottom: 0;
+}
+
+
+/* =========================================================
+   KORT
+   ========================================================= */
+
+.work-card {
+  position: relative;
+
+  flex: 0 0 270px;
+  width: 270px;
+
+  overflow: hidden;
+
+  background: #14141a;
+
+  border: 1px solid #2c2c34;
+  border-radius: 12px;
+
+  color: var(--text);
+  text-decoration: none;
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--accent);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+}
+
+
+/* Bilde */
+
+.work-thumbnail {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #08080a;
+}
+
+.work-thumbnail img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform .5s ease;
+}
+
+.work-card:hover .work-thumbnail img {
+  transform: scale(1.05);
+}
+
+
+/* Play */
+
+.play-badge {
+  position: absolute;
+
+  left: 14px;
+  bottom: 14px;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--accent);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.35);
+}
+
+
+/* Tekst */
+
+.work-info {
+  padding: 16px 18px 18px;
+}
+
+.work-info h3 {
+  margin: 0 0 6px;
+
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.work-info p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MOBIL
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .other-work-section {
+    padding: 70px 0;
+  }
+
+  .other-work-section .section-header {
+    width: calc(100% - 30px);
+    margin-bottom: 30px;
+  }
+
+  .film-strip {
+    padding: 17px 0;
+  }
+
+  .carousel-track {
+    gap: 0;
+  }
+
+  .carousel-group {
+    width: max-content;
+    gap: 14px;
+    padding: 20px 14px 20px 0;
+  }
+
+  .work-card {
+    flex: 0 0 78vw;
+    width: 78vw;
+  }
+
+  .film-holes {
+    height: 10px;
+    background-size: 24px 10px;
+  }
 }
