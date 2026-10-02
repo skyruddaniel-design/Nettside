@@ -506,6 +506,18 @@ h3 {
   padding-top: 100px;
 }
 
+@keyframes featured-slide-in-reverse {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .section-heading {
   margin-bottom: 30px;
 }
@@ -604,47 +616,47 @@ h3 {
 
 .play-overlay {
   position: absolute;
-
   inset: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background: rgba(0,0,0,0.28);
-
   color: white;
 
-  transition:
-    background 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .film-preview-link:hover .play-overlay {
-  background: rgba(0,0,0,0.42);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .play-btn {
-  width: 70px;
-  height: 70px;
+  width: 54px;
+  height: 54px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(255,255,255,0.95);
+  background: transparent;
 
-  border-radius: 50%;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
 
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.3);
+.film-preview-link:hover .play-btn {
+  transform: scale(1.08);
+  background: white;
 }
 
 .play-text {
-  margin-top: 16px;
 
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  opacity: 0.9;
 }
 
 .film-details {
@@ -1397,7 +1409,6 @@ textarea:focus {
   height: 9px;
   pointer-events: none;
   z-index: 10;
-
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='9' viewBox='0 0 24 9'%3E%3Crect x='5' y='1' width='14' height='7' rx='2' fill='%23f5f1e8'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: left center;
@@ -1564,4 +1575,252 @@ textarea:focus {
     height: 10px;
     background-size: 24px 10px;
   }
+}
+
+/* =========================================================
+   UTVALGTE PROSJEKTER – SLIDESHOW
+   ========================================================= */
+
+.featured-slider {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 70px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   SLIDER CONTENT
+   ========================================================= */
+
+.slider-content {
+  min-width: 0;
+
+  animation: featured-slide-in 0.45s ease;
+}
+
+@keyframes featured-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   PILER
+   ========================================================= */
+
+.slider-arrow {
+  position: relative;
+
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+
+  background: rgba(20,20,26,0.9);
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  z-index: 20;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.slider-arrow:hover {
+  background: var(--accent);
+
+  color: #000;
+
+  border-color: var(--accent);
+
+  transform: scale(1.08);
+}
+
+.slider-arrow:active {
+  transform: scale(0.96);
+}
+
+.slider-arrow svg {
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   DOTS
+   ========================================================= */
+
+.slider-dots {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 26px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #4a4a52;
+
+  cursor: pointer;
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.slider-dot:hover {
+  transform: scale(1.2);
+}
+
+.slider-dot.is-active {
+  width: 28px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible {
+  outline: 2px solid var(--accent);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 920px) {
+
+  .featured-slider {
+    grid-template-columns: 52px minmax(0, 1fr) 52px;
+
+    gap: 8px;
+  }
+
+  .slider-arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+  .featured-slider {
+    display: block;
+  }
+
+  .slider-content {
+    width: 100%;
+  }
+
+  .slider-arrow {
+    position: absolute;
+
+    top: 42%;
+
+    width: 42px;
+    height: 42px;
+
+    background: rgba(0,0,0,0.75);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 30;
+  }
+
+  .slider-arrow-prev {
+    left: 10px;
+  }
+
+  .slider-arrow-next {
+    right: 10px;
+  }
+
+  .cinema {
+    padding:
+      44px
+      7%
+      90px;
+  }
+
+  .slider-dots {
+    margin-top: 20px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .slider-content {
+    animation: none;
+  }
+
+  .slider-arrow,
+  .slider-dot {
+    transition: none;
+  }
+
+}
+
+.work-card .play-badge {
+  display: none;
+}
+
+.play-text {
+  display: none;
 }

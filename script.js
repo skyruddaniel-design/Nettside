@@ -189,3 +189,403 @@ if (carouselTrack) {
     });
   }
 }
+
+/* =========================================================
+   UTVALGTE PROSJEKTER – SLIDESHOW
+   ========================================================= */
+
+const projects = [
+  {
+    title: "Det Siste Stykket - Kortfilm",
+    description:
+      "Adrian fyller tjue år og ønsker en hyggelig og avslappet feiring, men bursdagsønsket hans går raskt i knus. Filmen er regissert, skrevet og klippet av meg.",
+    image: "assets/poster 2.0.jpg",
+    alt: "Forhåndsvisning av Det siste stykket",
+    link: "https://youtu.be/gF-GDMJKbxg?si=iU4TXom2twHANo7O"
+  },
+  {
+    title: "Better Call Saul - Edit",
+    description:
+      "En edit jeg lagde nylig som jeg ble svært fornøyd med.",
+    image: "assets/Saul Poster.png",
+    alt: "Forhåndsvisning av Better Call Saul Edit",
+    link: "https://www.youtube.com/shorts/VQuHyTOxk5s"
+  }
+];
+
+const featuredSlider = document.querySelector("[data-featured-slider]");
+
+if (featuredSlider) {
+  const image = featuredSlider.querySelector("[data-project-image]");
+  const link = featuredSlider.querySelector("[data-project-link]");
+  const title = featuredSlider.querySelector("[data-project-title]");
+  const description = featuredSlider.querySelector(
+    "[data-project-description]"
+  );
+
+  const prevButton = featuredSlider.querySelector("[data-slider-prev]");
+  const nextButton = featuredSlider.querySelector("[data-slider-next]");
+  const dotsContainer = document.querySelector("[data-slider-dots]");
+  const sliderContent = featuredSlider.querySelector(".slider-content");
+
+  let currentProject = 0;
+
+  function updateProject(index, direction = 1) {
+    currentProject =
+      (index + projects.length) % projects.length;
+
+    const project = projects[currentProject];
+
+    // Oppdater innhold
+    image.src = project.image;
+    image.alt = project.alt;
+
+    link.href = project.link;
+
+    title.textContent = project.title;
+    description.textContent = project.description;
+
+    // Animasjon
+    sliderContent.style.animation = "none";
+    sliderContent.offsetHeight;
+
+    sliderContent.style.animation =
+      direction >= 0
+        ? "featured-slide-in 0.45s ease"
+        : "featured-slide-in-reverse 0.45s ease";
+
+    // Oppdater aktive prikker
+    const dots = dotsContainer.querySelectorAll(".slider-dot");
+
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle(
+        "is-active",
+        dotIndex === currentProject
+      );
+
+      dot.setAttribute(
+        "aria-current",
+        dotIndex === currentProject ? "true" : "false"
+      );
+    });
+  }
+
+  // Lag prikker
+  projects.forEach((project, index) => {
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+    dot.className = "slider-dot";
+    dot.setAttribute(
+      "aria-label",
+      `Vis prosjekt ${index + 1}: ${project.title}`
+    );
+
+    dot.addEventListener("click", () => {
+      const direction =
+        index >= currentProject ? 1 : -1;
+
+      updateProject(index, direction);
+    });
+
+    dotsContainer.appendChild(dot);
+  });
+
+  // Forrige
+  prevButton.addEventListener("click", () => {
+    updateProject(currentProject - 1, -1);
+  });
+
+  // Neste
+  nextButton.addEventListener("click", () => {
+    updateProject(currentProject + 1, 1);
+  });
+
+  // Tastatur
+  document.addEventListener("keydown", (event) => {
+    // Ikke bruk piltastene hvis brukeren skriver i et felt
+    const activeElement = document.activeElement;
+
+    if (
+      activeElement &&
+      (
+        activeElement.tagName === "INPUT" ||
+        activeElement.tagName === "TEXTAREA" ||
+        activeElement.tagName === "SELECT"
+      )
+    ) {
+      return;
+    }
+
+    if (event.key === "ArrowLeft") {
+      updateProject(currentProject - 1, -1);
+    }
+
+    if (event.key === "ArrowRight") {
+      updateProject(currentProject + 1, 1);
+    }
+  });
+
+  // Touch / swipe på mobil
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  featuredSlider.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    },
+    { passive: true }
+  );
+
+  featuredSlider.addEventListener(
+    "touchend",
+    (event) => {
+      touchEndX = event.changedTouches[0].screenX;
+
+      const swipeDistance =
+        touchEndX - touchStartX;
+
+      if (Math.abs(swipeDistance) < 50) {
+        return;
+      }
+
+      if (swipeDistance < 0) {
+        // Sveip venstre → neste
+        updateProject(currentProject + 1, 1);
+      } else {
+        // Sveip høyre → forrige
+        updateProject(currentProject - 1, -1);
+      }
+    },
+    { passive: true }
+  );
+
+  // Start på første prosjekt
+  updateProject(0, 1);
+}
+
+/* =========================================================
+   ØVRIG ARBEID – PORTFØLJE
+   ========================================================= */
+
+const portfolioProjects = [
+  {
+    title: "Ai tar over verden",
+    description: "Amandus-nominert kortfilm",
+    image: "assets/Ai.png",
+    alt: "Ai tar over verden",
+    link: "https://www.youtube.com/watch?v=F51tHfCnojc&t=192s"
+  },
+
+  {
+    title: "Redigeringskonto",
+    description: "TikTok-konto hvor jeg publiserer fan edits.",
+    image: "assets/PB.png",
+    alt: "Redigeringskonto",
+    link: "https://www.tiktok.com/@pappaboyz"
+  },
+
+  {
+    title: "En hvit jul",
+    description: "En komedie-kortfilm.",
+    image: "assets/Hvit jul.png",
+    alt: "En hvit jul",
+    link: "https://youtu.be/Zszz-3rVFCc?si=DkiHmW8J5_3hd5F8"
+  },
+
+  {
+    title: "Manuskriptene mine",
+    description: "Noen utvalgte manuskripter jeg har laget.",
+    image: "assets/Manus.png",
+    alt: "Manuskriptene mine",
+    link: "https://drive.google.com/drive/folders/1fmLmk7ubljVRsA1I4ckWvYy8G2GvhHz9?usp=sharing"
+  },
+   {
+    title: "Better Call Saul - Edit",
+    description:
+      "En edit jeg lagde nylig som jeg ble svært fornøyd med.",
+    image: "assets/Saul Poster.png",
+    alt: "Forhåndsvisning av Better Call Saul Edit",
+    link: "https://www.youtube.com/shorts/VQuHyTOxk5s"
+  },
+  {
+    title: "Det Siste Stykket - Kortfilm",
+    description:
+      "Kortfilmen jeg er mest stolt av.",
+    image: "assets/poster 2.0.jpg",
+    alt: "Forhåndsvisning av Det siste stykket",
+    link: "https://youtu.be/gF-GDMJKbxg?si=iU4TXom2twHANo7O"
+  },
+];
+
+
+const portfolioTrack = document.getElementById("portfolioTrack");
+
+
+if (portfolioTrack) {
+
+  /*
+   * Lager én filmrull-gruppe.
+   */
+  function createPortfolioGroup() {
+
+    const group = document.createElement("div");
+
+    group.className = "carousel-group";
+
+    // Øvre filmhull
+    const topHoles = document.createElement("div");
+
+    topHoles.className =
+      "film-holes film-holes-top";
+
+    group.appendChild(topHoles);
+
+
+    // Lag alle prosjektene
+    portfolioProjects.forEach((project) => {
+
+      const card = document.createElement("a");
+
+      card.className = "work-card";
+
+      card.href = project.link;
+
+      card.target = "_blank";
+
+      card.rel = "noopener noreferrer";
+
+
+      card.innerHTML = `
+        <div class="work-thumbnail">
+
+          <img
+            src="${project.image}"
+            alt="${project.alt}"
+          >
+
+          <div class="play-badge">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="#000"
+              aria-hidden="true"
+            >
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+
+        </div>
+
+        <div class="work-info">
+
+          <h3>${project.title}</h3>
+
+          <p>${project.description}</p>
+
+        </div>
+      `;
+
+
+      group.appendChild(card);
+
+    });
+
+
+    // Nedre filmhull
+    const bottomHoles = document.createElement("div");
+
+    bottomHoles.className =
+      "film-holes film-holes-bottom";
+
+    group.appendChild(bottomHoles);
+
+
+    return group;
+  }
+
+
+  /*
+   * Vi lager to identiske grupper.
+   *
+   * Gruppe 2 ligger rett bak gruppe 1,
+   * slik at filmrullen kan gå i loop.
+   */
+  const group1 = createPortfolioGroup();
+
+  const group2 = createPortfolioGroup();
+
+
+  portfolioTrack.appendChild(group1);
+  portfolioTrack.appendChild(group2);
+
+
+  /* =======================================================
+     UENDELIG SCROLL
+     ======================================================= */
+
+  let position = 0;
+  let lastTime = performance.now();
+
+  const speed = 36;
+
+
+  function getGroupWidth() {
+    return group1.getBoundingClientRect().width;
+  }
+
+
+  function animatePortfolio(time) {
+
+    const delta =
+      Math.min(time - lastTime, 50);
+
+    lastTime = time;
+
+
+    const groupWidth =
+      getGroupWidth();
+
+
+    if (groupWidth > 0) {
+
+      position -=
+        speed * (delta / 1000);
+
+
+      if (position <= -groupWidth) {
+
+        position += groupWidth;
+
+      }
+
+
+      portfolioTrack.style.transform =
+        `translate3d(${position}px, 0, 0)`;
+
+    }
+
+
+    requestAnimationFrame(
+      animatePortfolio
+    );
+  }
+
+
+  window.addEventListener("load", () => {
+
+    position = 0;
+
+    lastTime = performance.now();
+
+    requestAnimationFrame(
+      animatePortfolio
+    );
+
+  });
+
+}
+
+
