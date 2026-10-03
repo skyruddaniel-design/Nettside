@@ -536,14 +536,14 @@ h3 {
 
   background:
     linear-gradient(
-      #5b0d1f,
-      #3a0712
+      #171717,
+      #151515
     )
-    top / 100% 34px no-repeat,
+    top / 100% 22px no-repeat,
 
     radial-gradient(
       ellipse 70% 80% at 50% 40%,
-      rgba(255,255,255,0.16) 0%,
+      rgba(41, 41, 41, 0.16) 0%,
       rgba(255,255,255,0.05) 45%,
       transparent 75%
     );
@@ -552,6 +552,7 @@ h3 {
 .cinema::before,
 .cinema::after {
   content: "";
+
 
   position: absolute;
 
@@ -563,9 +564,9 @@ h3 {
   background:
     repeating-linear-gradient(
       90deg,
-      #4a0a18 0,
-      #8c1c34 12px,
-      #4a0a18 24px
+      #141414 0,
+      #2f2e2f 12px,
+      #242424 34px
     );
 }
 
@@ -594,8 +595,8 @@ h3 {
   border-radius: 4px;
 
   box-shadow:
-    0 0 0 2px #2c2c2c,
-    0 0 60px rgba(255,255,255,0.3),
+    0 0 0 1px #2c2c2c,
+    0 0 60px rgba(255,255,255,0.1),
     0 40px 90px rgba(255,255,255,0.1);
 }
 
@@ -1823,4 +1824,82 @@ textarea:focus {
 
 .play-text {
   display: none;
+}
+
+/* =========================================================
+   RANDOM KAMERABLITZ
+   ========================================================= */
+
+.camera-flash {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.camera-flash-item {
+  position: absolute;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.6);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, var(--flash-opacity)) 0%,
+      rgba(255, 255, 255, 0.18) 18%,
+      rgba(255, 255, 255, 0.05) 35%,
+      transparent 30%
+    );
+
+  mix-blend-mode: screen;
+
+  opacity: 0;
+
+  animation: camera-flash-pop 0.28s ease-out forwards;
+}
+
+@keyframes camera-flash-pop {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(0.3);
+  }
+
+  12% {
+    opacity: 0.7;
+  }
+
+  28% {
+    opacity: 0.5;
+    transform:
+      translate(-50%, -50%)
+      scale(0.8);
+  }
+
+  55% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-flash {
+    display: none;
+  }
 }

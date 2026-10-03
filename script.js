@@ -588,4 +588,61 @@ if (portfolioTrack) {
 
 }
 
+/* =========================================================
+   RANDOM KAMERABLITZ – FLERE SAMTIDIG
+   ========================================================= */
 
+const cameraFlash = document.querySelector(".camera-flash");
+
+function createFlash() {
+  if (!cameraFlash) return;
+
+  const flash = document.createElement("div");
+  flash.className = "camera-flash-item";
+
+  // Tilfeldig plassering
+  flash.style.left = `${Math.random() * 100}%`;
+  flash.style.top = `${Math.random() * 100}%`;
+
+  // Tilfeldig størrelse
+  const size = Math.random() * 350 + 1000;
+  flash.style.width = `${size}px`;
+  flash.style.height = `${size}px`;
+
+  // Litt tilfeldig intensitet
+  flash.style.setProperty(
+    "--flash-opacity",
+    (Math.random() * 0.35 + 0.35).toFixed(2)
+  );
+
+  cameraFlash.appendChild(flash);
+
+  // Fjern etter animasjonen
+  setTimeout(() => {
+    flash.remove();
+  }, 280);
+}
+
+
+function burst() {
+  // 1–3 blitz samtidig
+  const amount = Math.floor(Math.random() * 3) + 1;
+
+  for (let i = 0; i < amount; i++) {
+    setTimeout(
+      createFlash,
+      Math.random() * 250
+    );
+  }
+
+  // Kortere og jevnere pause
+  const next =
+    Math.random() * 1200 + 2000;
+
+  setTimeout(burst, next);
+}
+
+
+
+// Start
+setTimeout(burst, 1500);
