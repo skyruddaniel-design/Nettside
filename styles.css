@@ -1903,3 +1903,306 @@ textarea:focus {
     display: none;
   }
 }
+
+/* =========================================================
+   KORTFORMAT / EDIT
+   ========================================================= */
+
+.edit-showcase-section {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  padding:
+    100px
+    clamp(18px, 4vw, 34px);
+}
+
+.edit-heading {
+  max-width: 700px;
+  margin-bottom: 42px;
+}
+
+.edit-heading h2 {
+  margin-bottom: 16px;
+}
+
+.edit-heading > p:last-child {
+  color: var(--text-soft);
+
+  line-height: 1.7;
+}
+
+.edit-showcase {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* =========================================================
+   VIDEO FRAME
+   ========================================================= */
+
+.edit-video-frame {
+  position: relative;
+
+  width: min(460px, 85vw);
+
+  padding: 8px;
+
+  background: #0d0d10;
+
+  border: 1px solid #303038;
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.45);
+
+  overflow: hidden;
+}
+
+.edit-video-frame video {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 11px;
+}
+
+
+/* =========================================================
+   CAMERA OVERLAY
+   ========================================================= */
+
+.camera-overlay {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+  right: 20px;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  text-shadow:
+    0 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+/* REC */
+
+.rec {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.rec-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 8px rgba(255, 137, 34, 0.75);
+
+  animation:
+    recBlink 1.4s infinite;
+}
+
+.camera-spec {
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   FOCUS MARKS
+   ========================================================= */
+
+.focus-mark {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 24px;
+  height: 24px;
+
+  pointer-events: none;
+}
+
+.focus-mark::before,
+.focus-mark::after {
+  content: "";
+
+  position: absolute;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Horisontal */
+
+.focus-mark::before {
+  top: 0;
+  left: 0;
+
+  width: 24px;
+  height: 1px;
+}
+
+
+/* Vertikal */
+
+.focus-mark::after {
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 24px;
+}
+
+
+/* Øvre venstre */
+
+.focus-tl {
+  top: 30px;
+  left: 30px;
+}
+
+
+/* Øvre høyre */
+
+.focus-tr {
+  top: 30px;
+  right: 30px;
+
+  transform: rotate(90deg);
+}
+
+
+/* Nedre venstre */
+
+.focus-bl {
+  bottom: 30px;
+  left: 30px;
+
+  transform: rotate(-90deg);
+}
+
+
+/* Nedre høyre */
+
+.focus-br {
+  right: 30px;
+  bottom: 30px;
+
+  transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   REC BLINK
+   ========================================================= */
+
+@keyframes recBlink {
+
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0.25;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+  .edit-showcase-section {
+    padding:
+      70px
+      18px;
+  }
+
+  .edit-heading {
+    margin-bottom: 30px;
+  }
+
+  .edit-video-frame {
+    width: min(460px, 90vw);
+  }
+
+  .camera-overlay {
+    top: 18px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .focus-mark {
+    width: 20px;
+    height: 20px;
+  }
+
+  .focus-mark::before {
+    width: 20px;
+  }
+
+  .focus-mark::after {
+    height: 20px;
+  }
+
+  .focus-tl {
+    top: 25px;
+    left: 25px;
+  }
+
+  .focus-tr {
+    top: 25px;
+    right: 25px;
+  }
+
+  .focus-bl {
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .focus-br {
+    right: 25px;
+    bottom: 25px;
+  }
+
+}

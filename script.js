@@ -206,6 +206,14 @@ const projects = [
   {
     title: "Better Call Saul - Edit",
     description:
+      "En avansert edit med fokus på motion graphics og lyddesign.",
+    image: "assets/Saul edit 2.0.png",
+    alt: "Forhåndsvisning av Better Call Saul Edit",
+    link: "https://www.youtube.com/shorts/bmN7Iz0Ii8Y"
+  },
+  {
+    title: "Better Call Saul - Edit",
+    description:
       "En edit jeg lagde nylig som jeg ble svært fornøyd med.",
     image: "assets/Saul Poster.png",
     alt: "Forhåndsvisning av Better Call Saul Edit",
@@ -624,6 +632,7 @@ function createFlash() {
 }
 
 
+
 function burst() {
   // 1–3 blitz samtidig
   const amount = Math.floor(Math.random() * 3) + 1;
@@ -638,7 +647,6 @@ function burst() {
   // Kortere og jevnere pause
   const next =
     Math.random() * 1200 + 2000;
-
   setTimeout(burst, next);
 }
 
