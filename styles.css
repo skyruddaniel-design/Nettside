@@ -1936,9 +1936,85 @@ textarea:focus {
 
 .edit-showcase {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(50px, 8vw, 130px);
 }
 
+
+.ae-decoration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 260px;
+
+  pointer-events: none;
+}
+
+.ae-decoration img:first-child {
+
+  width: 120px;
+
+  height: 120px;
+
+}
+
+/* DaVinci */
+
+.ae-decoration img:last-child {
+
+  width: 100px;
+
+  height: 100px;
+
+}
+
+.software-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+.software-logos img {
+  width: 95px;
+  height: 95px;
+
+  object-fit: contain;
+}
+
+.software-caption {
+  text-align: center;
+}
+
+.software-label {
+  margin: 0 0 8px;
+
+  color: var(--muted);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+.software-caption p {
+  max-width: 250px;
+
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
 
 /* =========================================================
    VIDEO FRAME
@@ -2205,4 +2281,10 @@ textarea:focus {
     bottom: 25px;
   }
 
+}
+
+@media (max-width: 680px) {
+  .ae-decoration {
+    display: none;
+  }
 }

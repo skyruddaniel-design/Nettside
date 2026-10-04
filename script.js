@@ -425,6 +425,14 @@ const portfolioProjects = [
     alt: "Forhåndsvisning av Det siste stykket",
     link: "https://youtu.be/gF-GDMJKbxg?si=iU4TXom2twHANo7O"
   },
+  {
+    title: "Better Call Saul - Edit",
+    description:
+      "En avansert edit med fokus på motion graphics og lyddesign.",
+    image: "assets/Saul edit 2.0.png",
+    alt: "Forhåndsvisning av Better Call Saul Edit",
+    link: "https://www.youtube.com/shorts/bmN7Iz0Ii8Y"
+  }
 ];
 
 
